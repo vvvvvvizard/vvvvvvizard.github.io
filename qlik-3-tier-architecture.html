@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementing 3-Tier Architecture in QlikSense</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Implementing 3-Tier Architecture in QlikSense</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="advanced-retrieval.html">Technical Posts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="introduction">
+            <h2>Introduction to 3-Tier Architecture</h2>
+            <p>In QlikSense, a well-structured 3-tier architecture ensures:</p>
+            <ul>
+                <li>Scalability for growing data volumes</li>
+                <li>Maintainability through clear separation of concerns</li>
+                <li>Performance optimization</li>
+                <li>Reusability of components</li>
+            </ul>
+        </section>
+
+        <section id="data-layer">
+            <h2>1. Data Layer - Loading and Transformation</h2>
+            <h3>Handling Multiple Data Sources</h3>
+            <pre><code>
+// Example QlikScript for loading multiple sources
+LOAD * INLINE [
+    SourceType, FilePath
+    'CSV', 'lib://DataFiles/sales.csv'
+    'Excel', 'lib://DataFiles/inventory.xlsx'
+    'SQL', 'lib://Database/connection.qvd'
+];
+            </code></pre>
+
+            <h3>Data Cleaning Techniques</h3>
+            <ul>
+                <li>Handling missing values</li>
+                <li>Data type conversion</li>
+                <li>Duplicate removal</li>
+                <li>Data validation rules</li>
+            </ul>
+        </section>
+
+        <section id="model-layer">
+            <h2>2. Model Layer - Star/Snowflake Schema</h2>
+            <h3>Designing the Data Model</h3>
+            <div class="architecture-diagram">
+                <img src="images/star-schema.png" alt="Star Schema Diagram">
+                <p>Key components:</p>
+                <ul>
+                    <li>Fact tables for measurable data</li>
+                    <li>Dimension tables for descriptive attributes</li>
+                    <li>Optimized relationships</li>
+                </ul>
+            </div>
+
+            <h3>Performance Optimization</h3>
+            <ul>
+                <li>QVD staging for fast loading</li>
+                <li>Incremental loading</li>
+                <li>Data reduction techniques</li>
+            </ul>
+        </section>
+
+        <section id="presentation-layer">
+            <h2>3. Presentation Layer - Visualization Best Practices</h2>
+            <h3>Effective Chart Selection</h3>
+            <table>
+                <tr>
+                    <th>Data Type</th>
+                    <th>Recommended Visualization</th>
+                </tr>
+                <tr>
+                    <td>Time Series</td>
+                    <td>Line Charts</td>
+                </tr>
+                <tr>
+                    <td>Comparisons</td>
+                    <td>Bar Charts</td>
+                </tr>
+                <tr>
+                    <td>Composition</td>
+                    <td>Pie/Donut Charts</td>
+                </tr>
+            </table>
+
+            <h3>Dashboard Design Principles</h3>
+            <ul>
+                <li>Consistent color schemes</li>
+                <li>Clear hierarchy of information</li>
+                <li>Responsive layout</li>
+                <li>Interactive elements</li>
+            </ul>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation Strategy</h2>
+            <ol>
+                <li>Source Analysis and Documentation</li>
+                <li>ETL Process Design</li>
+                <li>Data Model Development</li>
+                <li>Visualization Prototyping</li>
+                <li>Performance Testing</li>
+                <li>User Acceptance Testing</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Yusuf Rawat</p>
+        <nav>
+            <a href="index.html">Home</a> | 
+            <a href="experience.html">Experience</a> | 
+            <a href="https://www.linkedin.com/in/yusufrawat123" target="_blank">LinkedIn</a>
+        </nav>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Configuration Course</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Agent Configuration Course</h1>
+    </header>
+
+    <section id="agent-config">
+        <h2>Agent Configuration</h2>
+        <ul>
+            <li><strong>Parallel Execution:</strong> Enabled (max 5 tasks)</li>
+            <li><strong>Error Handling:</strong> Auto-retry (3 max retries, 10% error threshold)</li>
+            <li><strong>Memory:</strong> Enabled (1000 max history items)</li>
+            <li><strong>Priorities:</strong> Safety (high), Efficiency (medium), User Experience (high)</li>
+        </ul>
+    </section>
+
+    <section id="api-config">
+        <h2>API Configuration</h2>
+        <ul>
+            <li><strong>Environments:</strong> Production, Staging, Development</li>
+            <li><strong>Endpoints:</strong> Users, Data</li>
+            <li><strong>Global Settings:</strong> 3 max retries, 1000ms retry delay, 5000ms timeout</li>
+        </ul>
+    </section>
+
+    <section id="security-config">
+        <h2>Security Configuration</h2>
+        <ul>
+            <li><strong>Authentication:</strong> API Key, OAuth2</li>
+            <li><strong>Encryption:</strong> AES-256-GCM (90-day key rotation)</li>
+            <li><strong>Access Control:</strong> Admin, User roles</li>
+            <li><strong>Rate Limiting:</strong> 100 requests/minute</li>
+        </ul>
+    </section>
+
+    <section id="logging-config">
+        <h2>Logging Configuration</h2>
+        <ul>
+            <li><strong>Log Levels:</strong> Default (info), HTTP (debug), Database (warn), Security (error)</li>
+            <li><strong>Handlers:</strong> Console, File (10MB max, 5 backups)</li>
+            <li><strong>Monitoring:</strong> Health checks, Metrics</li>
+        </ul>
+    </section>
+
+    <section id="prompt-config">
+        <h2>Prompt Configuration</h2>
+        <ul>
+            <li><strong>Templates:</strong> Default, Creative, Technical, QA</li>
+            <li><strong>Validation:</strong> Required fields, 4096 max tokens</li>
+        </ul>
+    </section>
+
+    <section id="tool-config">
+        <h2>Tool Configuration</h2>
+        <ul>
+            <li><strong>Website Scraping:</strong> URL, Max Depth (default: 2)</li>
+            <li><strong>Calendar Events:</strong> Calendar ID, Max Events (default: 5)</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Course content based on agent configuration files</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple RAG Overview</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Simple Retrieval-Augmented Generation (RAG)</h1>
+    </header>
+
+    <main>
+        <section class="overview">
+            <h2>What is Simple RAG?</h2>
+            <p>
+                Retrieval-Augmented Generation (RAG) combines the strengths of information retrieval and 
+                language generation to create more accurate and contextually relevant responses. The 
+                simple RAG approach uses a straightforward retrieval mechanism to fetch relevant 
+                information from a knowledge base, which is then used to generate responses.
+            </p>
+            
+            <div class="diagram">
+                <img src="images/rag-diagram.png" alt="RAG Architecture Diagram">
+                <p class="caption">Simple RAG Architecture</p>
+            </div>
+        </section>
+
+        <section class="components">
+            <h2>Key Components</h2>
+            <div class="component-grid">
+                <div class="component">
+                    <h3>Retriever</h3>
+                    <p>
+                        The retriever component searches through a knowledge base to find relevant 
+                        documents or information chunks based on the input query.
+                    </p>
+                </div>
+                
+                <div class="component">
+                    <h3>Generator</h3>
+                    <p>
+                        The generator takes the retrieved information and the original query to 
+                        produce a coherent and contextually appropriate response.
+                    </p>
+                </div>
+                
+                <div class="component">
+                    <h3>Knowledge Base</h3>
+                    <p>
+                        A structured collection of information that the retriever searches through. 
+                        This can be a vector database, document store, or other knowledge repository.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="implementation">
+            <h2>Implementation Example</h2>
+            <pre><code class="python">
+from transformers import RagTokenizer, RagRetriever, RagSequenceForGeneration
+
+# Initialize components
+tokenizer = RagTokenizer.from_pretrained("facebook/rag-token-base")
+retriever = RagRetriever.from_pretrained(
+    "facebook/rag-token-base",
+    index_name="custom",
+    passages_path="data/passages.tsv",
+    index_path="data/index.faiss"
+)
+model = RagSequenceForGeneration.from_pretrained(
+    "facebook/rag-token-base",
+    retriever=retriever
+)
+
+# Process query
+query = "What is Retrieval-Augmented Generation?"
+inputs = tokenizer(query, return_tensors="pt")
+generated = model.generate(inputs["input_ids"])
+output = tokenizer.batch_decode(generated, skip_special_tokens=True)[0]
+
+print(output)
+            </code></pre>
+        </section>
+
+        <section class="resources">
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="https://arxiv.org/abs/2005.11401">Original RAG Paper</a></li>
+                <li><a href="https://huggingface.co/facebook/rag-token-base">Hugging Face RAG Model</a></li>
+                <li><a href="https://github.com/facebookresearch/rag">Facebook Research RAG Repository</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AI Course Website. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

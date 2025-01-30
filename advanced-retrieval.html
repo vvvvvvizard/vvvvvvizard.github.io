@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Retrieval Pattern</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Advanced Retrieval Pattern</h1>
+        <nav>
+            <a href="naive-rag.html">Previous: Naive RAG</a> |
+            <a href="index.html">Home</a> |
+            <a href="hybrid-search.html">Next: Hybrid Search</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                The Advanced Retrieval pattern significantly improves upon naive RAG through
+                sophisticated techniques that better understand query intent and document
+                relevance. This pattern implements several key architectural improvements:
+            </p>
+            
+            <h3>Architectural Diagram</h3>
+            <div class="architecture-diagram">
+                <pre>
+                +-------------------+       +-------------------+       +-------------------+
+                |                   |       |                   |       |                   |
+                |    User Query     | ----> | Query Processor   | ----> | Dual-Encoder      |
+                |                   |       |                   |       |                   |
+                +-------------------+       +-------------------+       +-------------------+
+                        ^                         |                           |
+                        |                         v                           v
+                        |                 +-------------------+       +-------------------+
+                        +-----------------|  Knowledge Base   |       | Cross-Encoder     |
+                                          |                   |       |                   |
+                                          +-------------------+       +-------------------+
+                        ^                         |                           |
+                        |                         v                           v
+                        |                 +-------------------+       +-------------------+
+                        +-----------------|  Ranking Model    |       |  Final Response   |
+                                          |                   |       |                   |
+                                          +-------------------+       +-------------------+
+                </pre>
+            </div>
+
+            <h3>Key Enhancements</h3>
+            <ol>
+                <li><strong>Dense Retrieval:</strong> State-of-the-art embeddings for semantic understanding</li>
+                <li><strong>Query Processing:</strong> Multi-stage expansion and refinement</li>
+                <li><strong>Context Awareness:</strong> Document re-ranking based on query context</li>
+                <li><strong>Dynamic Filtering:</strong> Adaptive document selection</li>
+                <li><strong>Relevance Scoring:</strong> Cross-encoder based precision scoring</li>
+            </ol>
+
+            <h3>Data Flow</h3>
+            <ol>
+                <li>Query is received and preprocessed</li>
+                <li>Query is expanded and refined</li>
+                <li>Initial retrieval using dual-encoder</li>
+                <li>Re-ranking using cross-encoder</li>
+                <li>Final document selection and response generation</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Implementation Example</h2>
+            <pre><code class="python">
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+class AdvancedRetriever:
+    def __init__(self, knowledge_base):
+        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.knowledge_base = knowledge_base
+        self.embeddings = self.model.encode(knowledge_base)
+        
+    def retrieve(self, query, top_k=5):
+        # Encode query
+        query_embedding = self.model.encode(query)
+        
+        # Calculate similarities
+        similarities = cosine_similarity(
+            [query_embedding],
+            self.embeddings
+        )[0]
+        
+        # Get top-k documents
+        top_indices = np.argsort(similarities)[-top_k:][::-1]
+        return [self.knowledge_base[i] for i in top_indices]
+
+# Usage
+knowledge_base = [...]  # Your document collection
+retriever = AdvancedRetriever(knowledge_base)
+results = retriever.retrieve("What is RAG?")
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>When to Use</h2>
+            <ul>
+                <li>Enterprise-grade question answering systems</li>
+                <li>Applications requiring high precision retrieval</li>
+                <li>Systems handling diverse and complex queries</li>
+                <li>When working with large, heterogeneous document collections</li>
+                <li>When computational resources support advanced processing</li>
+            </ul>
+
+            <h3>Performance Considerations</h3>
+            <ul>
+                <li>Latency increases with retrieval complexity</li>
+                <li>Requires more computational resources than naive RAG</li>
+                <li>Benefits from GPU acceleration for embedding models</li>
+                <li>May require caching strategies for production deployment</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>RAG Patterns Explained - Advanced Retrieval</p>
+    </footer>
+</body>
+</html>

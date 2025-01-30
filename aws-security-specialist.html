@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Security Specialist Certification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AWS Certified Security - Specialty</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aws-certification.html">AWS Certification</a></li>
+                <li><a href="aws-security-specialist.html">Security Specialist</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="core-concepts">
+            <h2>Core Security Concepts</h2>
+            <ul>
+                <li>Shared Responsibility Model</li>
+                <li>Defense in Depth</li>
+                <li>Zero Trust Architecture</li>
+                <li>Least Privilege Principle</li>
+                <li>Security by Design</li>
+            </ul>
+        </section>
+
+        <section id="security-services">
+            <h2>AWS Security Services</h2>
+            <div class="service-category">
+                <h3>Identity and Access Management</h3>
+                <ul>
+                    <li>IAM (Identity and Access Management)</li>
+                    <li>Cognito</li>
+                    <li>Single Sign-On (SSO)</li>
+                    <li>Directory Service</li>
+                </ul>
+            </div>
+
+            <div class="service-category">
+                <h3>Data Protection</h3>
+                <ul>
+                    <li>KMS (Key Management Service)</li>
+                    <li>CloudHSM</li>
+                    <li>Secrets Manager</li>
+                    <li>Macie</li>
+                </ul>
+            </div>
+
+            <div class="service-category">
+                <h3>Infrastructure Security</h3>
+                <ul>
+                    <li>VPC (Virtual Private Cloud)</li>
+                    <li>WAF (Web Application Firewall)</li>
+                    <li>Shield</li>
+                    <li>Firewall Manager</li>
+                </ul>
+            </div>
+
+            <div class="service-category">
+                <h3>Monitoring and Logging</h3>
+                <ul>
+                    <li>CloudTrail</li>
+                    <li>CloudWatch</li>
+                    <li>GuardDuty</li>
+                    <li>Config</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="identity-management">
+            <h2>Identity and Access Management</h2>
+            <div class="topic">
+                <h3>IAM Best Practices</h3>
+                <ul>
+                    <li>Use groups to assign permissions</li>
+                    <li>Enable MFA for all users</li>
+                    <li>Use roles for applications</li>
+                    <li>Implement least privilege</li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <h3>Advanced IAM Features</h3>
+                <ul>
+                    <li>IAM Access Analyzer</li>
+                    <li>Policy Simulator</li>
+                    <li>Permissions Boundaries</li>
+                    <li>Service Control Policies</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="data-protection">
+            <h2>Data Protection</h2>
+            <div class="protection-method">
+                <h3>Encryption</h3>
+                <ul>
+                    <li>Encryption at Rest</li>
+                    <li>Encryption in Transit</li>
+                    <li>Key Rotation Strategies</li>
+                    <li>Envelope Encryption</li>
+                </ul>
+            </div>
+
+            <div class="protection-method">
+                <h3>Data Classification</h3>
+                <ul>
+                    <li>Macie for PII detection</li>
+                    <li>S3 Object Tagging</li>
+                    <li>Data Lifecycle Policies</li>
+                    <li>Access Logging</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="infrastructure-security">
+            <h2>Infrastructure Security</h2>
+            <div class="security-area">
+                <h3>Network Security</h3>
+                <ul>
+                    <li>VPC Design Best Practices</li>
+                    <li>Security Groups and NACLs</li>
+                    <li>PrivateLink and Endpoint Services</li>
+                    <li>Transit Gateway</li>
+                </ul>
+            </div>
+
+            <div class="security-area">
+                <h3>Endpoint Protection</h3>
+                <ul>
+                    <li>WAF Rules and Rule Groups</li>
+                    <li>Shield Advanced Protection</li>
+                    <li>Firewall Manager Policies</li>
+                    <li>Network Firewall</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="monitoring-logging">
+            <h2>Monitoring and Logging</h2>
+            <div class="monitoring-tool">
+                <h3>CloudTrail</h3>
+                <ul>
+                    <li>Enable in all regions</li>
+                    <li>Integrate with CloudWatch</li>
+                    <li>Create trails for specific accounts</li>
+                    <li>Enable log file validation</li>
+                </ul>
+            </div>
+
+            <div class="monitoring-tool">
+                <h3>GuardDuty</h3>
+                <ul>
+                    <li>Threat Detection Categories</li>
+                    <li>Finding Types</li>
+                    <li>Integration with Security Hub</li>
+                    <li>Suppression Rules</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="incident-response">
+            <h2>Incident Response</h2>
+            <div class="response-phase">
+                <h3>Preparation</h3>
+                <ul>
+                    <li>Create IR Runbooks</li>
+                    <li>Establish Communication Channels</li>
+                    <li>Implement Detective Controls</li>
+                </ul>
+            </div>
+
+            <div class="response-phase">
+                <h3>Detection and Analysis</h3>
+                <ul>
+                    <li>Use CloudTrail and Config</li>
+                    <li>Analyze GuardDuty Findings</li>
+                    <li>Correlate Security Hub Insights</li>
+                </ul>
+            </div>
+
+            <div class="response-phase">
+                <h3>Containment and Recovery</h3>
+                <ul>
+                    <li>Isolate Affected Resources</li>
+                    <li>Revoke Compromised Credentials</li>
+                    <li>Restore from Backups</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="compliance">
+            <h2>Compliance</h2>
+            <div class="compliance-area">
+                <h3>Standards and Frameworks</h3>
+                <ul>
+                    <li>ISO 27001</li>
+                    <li>PCI DSS</li>
+                    <li>HIPAA</li>
+                    <li>GDPR</li>
+                </ul>
+            </div>
+
+            <div class="compliance-area">
+                <h3>AWS Compliance Programs</h3>
+                <ul>
+                    <li>Artifact</li>
+                    <li>Config Rules</li>
+                    <li>Audit Manager</li>
+                    <li>Control Tower</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Yusuf Rawat</p>
+        <nav>
+            <a href="index.html">Home</a> | 
+            <a href="aws-certification.html">AWS Certification</a> | 
+            <a href="aws-security-specialist.html">Security Specialist</a>
+        </nav>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

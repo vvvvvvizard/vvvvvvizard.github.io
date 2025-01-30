@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Search Pattern</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hybrid Search Pattern</h1>
+        <nav>
+            <a href="advanced-retrieval.html">Previous: Advanced Retrieval</a> |
+            <a href="index.html">Home</a> |
+            <a href="query-rewriting.html">Next: Query Rewriting</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Hybrid Search combines multiple retrieval approaches:
+            </p>
+            <ol>
+                <li>Keyword-based search (sparse retrieval)</li>
+                <li>Semantic search (dense retrieval)</li>
+                <li>Fusion of results using weighted scoring</li>
+                <li>Dynamic adjustment of retrieval strategies</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Implementation Example</h2>
+            <pre><code class="python">
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sentence_transformers import SentenceTransformer
+import numpy as np
+
+class HybridRetriever:
+    def __init__(self, documents):
+        self.documents = documents
+        self.tfidf = TfidfVectorizer()
+        self.tfidf_matrix = self.tfidf.fit_transform(documents)
+        self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
+        self.embeddings = self.embedder.encode(documents)
+        
+    def search(self, query, alpha=0.7):
+        # Sparse retrieval (TF-IDF)
+        query_vec = self.tfidf.transform([query])
+        sparse_scores = (query_vec * self.tfidf_matrix.T).toarray()[0]
+        
+        # Dense retrieval (embeddings)
+        query_embedding = self.embedder.encode(query)
+        dense_scores = cosine_similarity(
+            [query_embedding],
+            self.embeddings
+        )[0]
+        
+        # Combine scores
+        combined_scores = alpha * dense_scores + (1 - alpha) * sparse_scores
+        top_indices = np.argsort(combined_scores)[::-1]
+        
+        return [(self.documents[i], combined_scores[i]) 
+               for i in top_indices]
+
+# Usage
+documents = [...]  # Your document collection
+retriever = HybridRetriever(documents)
+results = retriever.search("RAG implementation")
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>When to Use</h2>
+            <ul>
+                <li>When both precision and recall are important</li>
+                <li>For queries that benefit from both keyword and semantic matching</li>
+                <li>When dealing with diverse document types and query patterns</li>
+                <li>When you need to balance between exact matches and conceptual understanding</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>RAG Patterns Explained - Hybrid Search</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterative Retrieval Pattern</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Iterative Retrieval Pattern</h1>
+        <nav>
+            <a href="contextual-compression.html">Previous: Contextual Compression</a> |
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Iterative Retrieval improves results through multiple rounds:
+            </p>
+            <ol>
+                <li>Initial query and retrieval</li>
+                <li>Analysis of initial results</li>
+                <li>Query refinement based on analysis</li>
+                <li>Subsequent retrievals with refined queries</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Implementation Example</h2>
+            <pre><code class="python">
+from transformers import pipeline
+from sentence_transformers import SentenceTransformer
+import numpy as np
+
+class IterativeRetriever:
+    def __init__(self, documents):
+        self.documents = documents
+        self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
+        self.embeddings = self.embedder.encode(documents)
+        self.qa = pipeline("question-answering")
+        
+    def retrieve(self, query, max_iterations=3):
+        results = []
+        current_query = query
+        
+        for i in range(max_iterations):
+            # Retrieve documents
+            query_embedding = self.embedder.encode(current_query)
+            scores = cosine_similarity(
+                [query_embedding],
+                self.embeddings
+            )[0]
+            top_indices = np.argsort(scores)[::-1][:5]
+            retrieved = [self.documents[i] for i in top_indices]
+            
+            # Analyze results
+            analysis = self.qa(
+                question=current_query,
+                context=" ".join(retrieved)
+            )
+            
+            # Store results
+            results.append({
+                'iteration': i + 1,
+                'query': current_query,
+                'documents': retrieved,
+                'analysis': analysis
+            })
+            
+            # Refine query
+            current_query = f"{current_query} {analysis['answer']}"
+            
+        return results
+
+# Usage
+documents = [...]  # Your document collection
+retriever = IterativeRetriever(documents)
+results = retriever.retrieve("Explain RAG architecture")
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>When to Use</h2>
+            <ul>
+                <li>When initial queries are incomplete or ambiguous</li>
+                <li>For complex information needs</li>
+                <li>When dealing with multi-faceted questions</li>
+                <li>For improving precision through feedback loops</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>RAG Patterns Explained - Iterative Retrieval</p>
+    </footer>
+</body>
+</html>

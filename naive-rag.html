@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naive RAG Pattern</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Naive RAG Pattern</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="advanced-retrieval.html">Next: Advanced Retrieval</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                The Naive RAG pattern establishes the fundamental architecture for Retrieval-Augmented
+                Generation systems. This pattern serves as the baseline for understanding more complex
+                RAG implementations.
+            </p>
+            
+            <h3>Architectural Diagram</h3>
+            <div class="architecture-diagram">
+                <pre>
+                +-------------------+       +-------------------+       +-------------------+
+                |                   |       |                   |       |                   |
+                |    User Query     | ----> |    Retriever      | ----> |    Generator      |
+                |                   |       |                   |       |                   |
+                +-------------------+       +-------------------+       +-------------------+
+                        ^                         |                           |
+                        |                         v                           v
+                        |                 +-------------------+       +-------------------+
+                        +-----------------|  Knowledge Base   |       |  Final Response   |
+                                          |                   |       |                   |
+                                          +-------------------+       +-------------------+
+                </pre>
+            </div>
+
+            <h3>Key Characteristics</h3>
+            <ul>
+                <li><strong>Retrieval:</strong> Basic vector similarity search using cosine distance</li>
+                <li><strong>Processing:</strong> Minimal document preprocessing and filtering</li>
+                <li><strong>Generation:</strong> Direct concatenation of query and documents</li>
+                <li><strong>Knowledge Base:</strong> Flat document structure with basic indexing</li>
+            </ul>
+
+            <h3>Data Flow</h3>
+            <ol>
+                <li>User query is received and tokenized</li>
+                <li>Query embedding is generated using basic encoder</li>
+                <li>Top-k documents are retrieved from knowledge base</li>
+                <li>Documents are concatenated with original query</li>
+                <li>Language model generates final response</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Implementation Example</h2>
+            <pre><code class="python">
+from transformers import RagTokenizer, RagRetriever, RagSequenceForGeneration
+
+# Initialize components
+tokenizer = RagTokenizer.from_pretrained("facebook/rag-token-base")
+retriever = RagRetriever.from_pretrained(
+    "facebook/rag-token-base",
+    index_name="custom",
+    passages_path="data/my_knowledge_base.tsv"
+)
+model = RagSequenceForGeneration.from_pretrained(
+    "facebook/rag-token-base",
+    retriever=retriever
+)
+
+def naive_rag(query):
+    # Tokenize input
+    inputs = tokenizer(query, return_tensors="pt")
+    
+    # Generate response
+    outputs = model.generate(
+        input_ids=inputs["input_ids"],
+        attention_mask=inputs["attention_mask"]
+    )
+    
+    # Decode and return response
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>When to Use</h2>
+            <ul>
+                <li>Simple Q&A systems with limited complexity</li>
+                <li>When computational resources are constrained</li>
+                <li>For rapid prototyping and initial implementations</li>
+                <li>When working with small, well-structured document collections</li>
+                <li>For educational purposes to understand RAG fundamentals</li>
+            </ul>
+
+            <h3>Limitations</h3>
+            <ul>
+                <li>Limited ability to handle complex queries</li>
+                <li>No query expansion or refinement</li>
+                <li>Basic retrieval without context awareness</li>
+                <li>No document re-ranking or filtering</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>RAG Patterns Explained - Naive RAG</p>
+    </footer>
+</body>
+</html>

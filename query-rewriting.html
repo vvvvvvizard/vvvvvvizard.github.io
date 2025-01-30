@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Rewriting Pattern</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Query Rewriting Pattern</h1>
+        <nav>
+            <a href="hybrid-search.html">Previous: Hybrid Search</a> |
+            <a href="index.html">Home</a> |
+            <a href="contextual-compression.html">Next: Contextual Compression</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Query Rewriting improves retrieval by transforming queries:
+            </p>
+            <ol>
+                <li>Query expansion with synonyms and related terms</li>
+                <li>Query simplification and normalization</li>
+                <li>Spelling correction and typo handling</li>
+                <li>Contextual query refinement</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Implementation Example</h2>
+            <pre><code class="python">
+from transformers import T5ForConditionalGeneration, T5Tokenizer
+import spacy
+
+class QueryRewriter:
+    def __init__(self):
+        self.tokenizer = T5Tokenizer.from_pretrained("t5-small")
+        self.model = T5ForConditionalGeneration.from_pretrained("t5-small")
+        self.nlp = spacy.load("en_core_web_sm")
+        
+    def rewrite(self, query):
+        # Basic preprocessing
+        doc = self.nlp(query)
+        normalized = " ".join([token.lemma_ for token in doc])
+        
+        # Generate rewritten queries
+        input_text = f"rewrite query: {normalized}"
+        input_ids = self.tokenizer(input_text, return_tensors="pt").input_ids
+        
+        outputs = self.model.generate(
+            input_ids,
+            max_length=50,
+            num_return_sequences=3,
+            num_beams=5
+        )
+        
+        return [self.tokenizer.decode(output, skip_special_tokens=True)
+               for output in outputs]
+
+# Usage
+rewriter = QueryRewriter()
+rewritten_queries = rewriter.rewrite("How does RAG work?")
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>When to Use</h2>
+            <ul>
+                <li>When dealing with ambiguous or vague queries</li>
+                <li>For improving recall in information retrieval</li>
+                <li>When users may not know the exact terminology</li>
+                <li>For handling spelling mistakes and typos</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>RAG Patterns Explained - Query Rewriting</p>
+    </footer>
+</body>
+</html>

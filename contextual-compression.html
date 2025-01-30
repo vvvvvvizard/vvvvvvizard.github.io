@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contextual Compression Pattern</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Contextual Compression Pattern</h1>
+        <nav>
+            <a href="query-rewriting.html">Previous: Query Rewriting</a> |
+            <a href="index.html">Home</a> |
+            <a href="iterative-retrieval.html">Next: Iterative Retrieval</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Contextual Compression reduces document size while preserving relevance:
+            </p>
+            <ol>
+                <li>Extractive summarization</li>
+                <li>Context-aware sentence selection</li>
+                <li>Relevance scoring and filtering</li>
+                <li>Dynamic compression based on query context</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Implementation Example</h2>
+            <pre><code class="python">
+from transformers import pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+
+class ContextualCompressor:
+    def __init__(self):
+        self.summarizer = pipeline("summarization")
+        self.vectorizer = TfidfVectorizer()
+        
+    def compress(self, document, query, max_length=512):
+        # Split document into sentences
+        sentences = document.split('. ')
+        
+        # Calculate relevance scores
+        tfidf_matrix = self.vectorizer.fit_transform(sentences + [query])
+        query_vec = tfidf_matrix[-1]
+        doc_matrix = tfidf_matrix[:-1]
+        scores = (query_vec * doc_matrix.T).toarray()[0]
+        
+        # Select top sentences
+        top_indices = np.argsort(scores)[-5:][::-1]
+        selected = [sentences[i] for i in top_indices]
+        compressed = '. '.join(selected)
+        
+        # Further summarize if needed
+        if len(compressed) > max_length:
+            compressed = self.summarizer(
+                compressed,
+                max_length=max_length,
+                min_length=30,
+                do_sample=False
+            )[0]['summary_text']
+            
+        return compressed
+
+# Usage
+compressor = ContextualCompressor()
+document = "..."  # Your document text
+compressed = compressor.compress(document, "RAG architecture")
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>When to Use</h2>
+            <ul>
+                <li>When dealing with long documents</li>
+                <li>For reducing computational overhead</li>
+                <li>When only specific parts of documents are relevant</li>
+                <li>For improving response generation quality</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>RAG Patterns Explained - Contextual Compression</p>
+    </footer>
+</body>
+</html>

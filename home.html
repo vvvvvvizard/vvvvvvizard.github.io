@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home">
+    <div class="sidebar-panel">
+        <div class="sidebar-content">
+            <nav>
+                <ul class="sidebar-links">
+                    <li><a href="home.html" class="active">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="projects.html">AI Projects</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="consulting.html">Consulting</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="blog.html">Tech Blog</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="content-section video-container" id="hero">
+        <video controls autoplay muted loop class="hero-video">
+            <source src="Videos/AI.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar-panel');
+    
+    sidebar.addEventListener('mouseenter', () => {
+        sidebar.classList.add('sidebar-active');
+    });
+    
+    sidebar.addEventListener('mouseleave', () => {
+        sidebar.classList.remove('sidebar-active');
+    });
+});
+</script>
+</body>
+</html>

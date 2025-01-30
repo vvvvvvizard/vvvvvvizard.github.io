@@ -1,57 +1,175 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yusuf Rawat - IT Governance Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            background-color: #f4f4f4;
+    <title>Yusuf Rawat - AWS Solution Architect & Business Intelligence Expert</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script>
+        function decodeEmail(element) {
+            const encoded = element.dataset.email;
+            const decoded = atob(encoded);
+            element.href = `mailto:${decoded}`;
+            element.textContent = decoded;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        nav {
-            margin-top: 20px;
-            padding: 10px;
-            background: #0073e6;
-            border-radius: 5px;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My IT Governance Portfolio</h1>
-        <p>This site showcases my expertise in IT Governance, Risk & Compliance.</p>
-        
+    <header>
+        <h1>Yusuf Rawat</h1>
+        <h2>AWS Solution Architecture | Business Intelligence | Data Science</h2>
         <nav>
-            <a href="index.html">Home</a> |
-            <a href="about.html">About</a> |
-            <a href="Projects.html">Projects</a> |
-            <a href="Contact.html">Contact</a>
+            <ul>
+                    <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="agentic-ai.html">Agentic AI</a></li>
+                <li><a href="cryptographic-computing.html">Cryptographic Computing</a></li>
+                <li><a href="configuration_course.html">Configuration Course</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://www.linkedin.com/in/yusuf-rawat-123/" target="_blank">LinkedIn</a></li>
+                <li class="dropdown">
+                    <a href="#">RAG Patterns</a>
+                    <ul class="dropdown-content">
+                        <li><a href="naive-rag.html">Naive RAG</a></li>
+                        <li><a href="advanced-retrieval.html">Advanced Retrieval</a></li>
+                        <li><a href="hybrid-search.html">Hybrid Search</a></li>
+                        <li><a href="query-rewriting.html">Query Rewriting</a></li>
+                        <li><a href="contextual-compression.html">Contextual Compression</a></li>
+                        <li><a href="iterative-retrieval.html">Iterative Retrieval</a></li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
+    </header>
 
-        <p>More content coming soon...</p>
-
-        <!-- Placeholder for Canva Embed -->
-        <div>
-            <p><strong>Canva Design Placeholder</strong></p>
-            <iframe src="" width="100%" height="400" style="border:none;" id="canvaEmbed"></iframe>
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="profile-summary">
+            <p>13 years of experience delivering impactful data solutions for major South African enterprises including FNB Bank, ABSA Bank, and Sanlam Financial Services. Proven track record in AWS architecture, business intelligence, and end-to-end data project implementation.</p>
+            
+            <div class="key-highlights">
+                <h3>Core Expertise:</h3>
+                <ul>
+                    <li>AWS Solution Architecture</li>
+                    <li>Business Intelligence & Data Analytics</li>
+                    <li>ETL/ELT Processes & Data Modeling</li>
+                    <li>Python & SQL Development</li>
+                    <li>Data Governance & Master Data Management</li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <h3>EQPLUS TECHNOLOGIES</h3>
+                <h4>Technical Lead Solutions Architect</h4>
+                <p>Mar 2024 - May 2024</p>
+                <ul>
+                    <li>Designed solution architecture for government and SARB data projects</li>
+                    <li>Implemented AWS POC with S3 and Redshift Cluster</li>
+                    <li>Developed test cases for data quality and governance</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <h3>ABSA BANK</h3>
+                <h4>Associate Vice President - Manager of Business Enablement</h4>
+                <p>2020 - 2023</p>
+                <ul>
+                    <li>Created BI environment from scratch for Absa Group</li>
+                    <li>Developed financial models for South Africa and ARO countries</li>
+                    <li>Implemented JIRA data integration using Python</li>
+                </ul>
+            </div>
+
+            <p class="cta">View full experience details: <a href="experience.html">Experience Page</a></p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Cloud & Architecture</h3>
+                <ul>
+                    <li>AWS Solution Architecture</li>
+                    <li>Data Lakehouse Design</li>
+                    <li>Security Architecture</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Data & Analytics</h3>
+                <ul>
+                    <li>Business Intelligence</li>
+                    <li>Data Modeling</li>
+                    <li>ETL/ELT Processes</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Programming</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>SQL</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Key Achievements</h2>
+        <ul>
+            <li>Developed BI solution integrating JIRA data using Python (Absa Group)</li>
+            <li>Created IT capacity management system saving R8 million (Sanlam)</li>
+            <li>Led BI team delivering solutions for FNB Home Loan Division</li>
+            <li>Distinctions in BSc Honors Data Science (Big Data & Analytics - 90%)</li>
+            <li>ITIL and QlikView Data Architect Certifications</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-info">
+            <form id="contact-form" action="https://formspree.io/f/xvojnzqw" method="POST">
+                <div class="form-group" role="group" aria-labelledby="name-label">
+                    <label id="name-label" for="name">Name:</label>
+                    <input type="text" id="name" name="name" required aria-required="true" placeholder="Enter your name">
+                </div>
+                <div class="form-group" role="group" aria-labelledby="email-label">
+                    <label id="email-label" for="email">Email:</label>
+                    <input type="email" id="email" name="email" required aria-required="true" placeholder="your.email@example.com">
+                </div>
+                <div class="form-group" role="group" aria-labelledby="message-label">
+                    <label id="message-label" for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required aria-required="true" placeholder="Type your message here"></textarea>
+                </div>
+                <button type="submit" aria-label="Submit contact form">Send Message</button>
+            </form>
+            <div class="direct-contact">
+                <p>Fourways, Johannesburg, South Africa</p>
+                <p>Phone: <a href="tel:+27662101413" class="obfuscated-phone">+27 66 210 1413</a></p>
+                <p>Email: <a href="#" class="email-obfuscator" data-email="WXVzdWZSYXdhdDMyMUBnbWFpbC5jb20=" onclick="decodeEmail(this)">[Click to reveal]</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/yusuf-rawat-123/" target="_blank">linkedin.com/in/yusuf-rawat-123</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Yusuf Rawat</p>
+        <nav>
+            <a href="index.html">Home</a> | 
+            <a href="experience.html">Experience</a> | 
+            <a href="agentic-ai.html">Agentic AI</a> | 
+            <a href="cryptographic-computing.html">Cryptographic Computing</a> | 
+            <a href="https://www.linkedin.com/in/yusuf-rawat-123/" target="_blank">LinkedIn</a>
+        </nav>
+    </footer>
 </body>
 </html>
